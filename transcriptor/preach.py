@@ -64,14 +64,14 @@ write = Task(
     2. identify the target audience this text is intended for.
     3. The text must have an emotional, comforting tone, as it is
        targeted to an individual of the identified target audience
-       and contain between 250 and 300 words.
+       and contain between 350 and 400 words.
     """),
     expected_output=dedent("""
     A text with an engaging, eloquent and sensitive style,
     with no date or time references, aimed at the target audience
     dentified, and calling the recipient 'querido amigo, querida amiga', in
     Brazilian Portuguese (pt-BR), structured like a letter, not signed,
-    showing:
+    with numbers written in full, showing:
     \n\nAssunto: [subject] \n\nIntenção:[Intention]
     \n\nPúblico: [target_audience] \n\n[letter text]
     """),
@@ -88,19 +88,23 @@ screenplay = Task(
     defining music and sound effects.
     """),
     expected_output=dedent("""
-    A script describing the opening, scenes and ending of the video.
-    Each of these elements contains the prompt for the image generation
-    AI, the duration of the scene, the description, and the text
-    content of the scene. Everything written in Brazilian Portuguese
-    (pt-BR), except the prompt, which must be in American English.
-    add to the image prompt the aspect ratio 16x9, the style:
-    photo realistic and the quality: photographic.
-                           show:
-                           \n\nCena:[scene]
-                           \n\nDuração:[duration]
-                           \n\nDescrção:[description]
-                           \n\nTexto:[text]
-                           \n\nPROMPT:[image prompt]
+    A script describing the opening, up to 10 scenes and ending of the video.
+    Each of these elements contains:
+      the detailed prompt for the AI image generation with at least 15 words
+        and add the text 'ar 16:9, photo realistic, photographic quality'
+        to the end of the prompt.
+      the duration of the scene;
+      the description; and
+      text content of the scene.
+    Everything written in Brazilian Portuguese (pt-BR),
+      except the prompt, which must be in American English.
+    The output must be written in table format to an csv file
+    with the columns:
+    \nCena:[scene]
+    \nDuração:[duration in seconds]
+    \nPROMPT:[PROMPT enclosed in quotes]
+    \nDescrição:[description]
+    \nTexto:[text]
     """),
     agent=screenplayer,
     output_file='output-files/roteiro{passage}.md',
