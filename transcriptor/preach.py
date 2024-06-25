@@ -63,7 +63,7 @@ write = Task(
        passage {passage}.
     2. identify the target audience this text is intended for and
        create a persona to represent them.
-    3. Do not use the same persona every time.
+    3. Do not use the same mane to the persona every time.
     4. The text must have an emotional, comforting tone, aimed at
        the identified persona and contain between 250 and 300 words.
     """),
@@ -76,7 +76,7 @@ write = Task(
     \n\nPúblico: [target_audience] \n\n[letter text]
     """),
     agent=pastor,
-    output_file='output-files/pregacao.md',
+    output_file='output-files/pregacao{passage}.md',
     verbose=2,
 )
 
@@ -100,7 +100,7 @@ screenplay = Task(
                            \n\nPROMPT:[image prompt]
     """),
     agent=screenplayer,
-    output_file='output-files/roteiro.md',
+    output_file='output-files/roteiro{passage}.md',
     verbose=2,
 )
 
@@ -124,7 +124,10 @@ def execute_task(passagem):
 if __name__ == "__main__":
     # Receba o argumento da linha de comando
     if len(sys.argv) != 2:
-        print("Uso: python meu_script.py <texto>")
+        print(
+            "Uso: python preach.py 'livro capitulo"
+            "[:versículo][-versículo final]'"
+            )
         sys.exit(1)
 
     passagem = sys.argv[1]
