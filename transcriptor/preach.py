@@ -61,16 +61,16 @@ write = Task(
     description=dedent("""
     1. Create a motivational text based on the following biblical
        passage {passage}.
-    2. identify the target audience this text is intended for and
-       create a persona to represent them.
-    3. Do not use the same mane to the persona every time.
-    4. The text must have an emotional, comforting tone, aimed at
-       the identified persona and contain between 250 and 300 words.
+    2. identify the target audience this text is intended for.
+    3. The text must have an emotional, comforting tone, as it is
+       targeted to an individual of the identified target audience
+       and contain between 250 and 300 words.
     """),
     expected_output=dedent("""
     A text with an engaging, eloquent and sensitive style,
-    with no date or time references, aimed at the persona identified,
-    in Brazilian Portuguese (pt-BR), structured like a letter, not signed,
+    with no date or time references, aimed at the target audience
+    dentified, and calling the recipient 'querido amigo, querida amiga', in
+    Brazilian Portuguese (pt-BR), structured like a letter, not signed,
     showing:
     \n\nAssunto: [subject] \n\nIntenção:[Intention]
     \n\nPúblico: [target_audience] \n\n[letter text]
@@ -93,8 +93,11 @@ screenplay = Task(
     AI, the duration of the scene, the description, and the text
     content of the scene. Everything written in Brazilian Portuguese
     (pt-BR), except the prompt, which must be in American English.
+    add to the image prompt the aspect ratio 16x9, the style:
+    photo realistic and the quality: photographic.
                            show:
                            \n\nCena:[scene]
+                           \n\nDuração:[duration]
                            \n\nDescrção:[description]
                            \n\nTexto:[text]
                            \n\nPROMPT:[image prompt]
