@@ -2,7 +2,6 @@ import os
 from textwrap import dedent
 
 from crewai import Agent
-from crewai_tools import FileReadTool
 from langchain_openai import ChatOpenAI
 
 
@@ -60,6 +59,7 @@ class CreatingContentAgents:
                  an active and meaningful faith.
                 """),
             llm=self.llm,
+            max_iter=40,
             verbose=True,
         )
 

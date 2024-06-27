@@ -21,7 +21,7 @@ class PreachDefiningTasks:
                 a reading dedications for this audience.
             """),
             agent=agent,
-            bible_verse=bible_verse
+            bible_verse=bible_verse,
         )
 
     def preach_development_task(self, agent, bible_verse):
@@ -56,6 +56,7 @@ class PreachDefiningTasks:
                     the text os the verse {bible_verse};
                     the reading dedication; and
                     the text for the preaching.
+                Must not be signed.
             """),
         )
 
