@@ -16,7 +16,6 @@ openai_api_key = os.getenv('OPENAI_API_KEY')
 
 gpt3_llm = ChatOpenAI(model='gpt-3.5-turbo', api_key=openai_api_key)
 gpt4o_llm = ChatOpenAI(model='gpt-4o', api_key=openai_api_key)
-# passage = 'Josué 1:9'
 
 # Definição dos agentes:
 
@@ -32,7 +31,7 @@ pastor = Agent(
         'the faithful, endowed with extreme empathy and a good heart.'
     ),
     verbose=True,
-    memory=True,
+    memory=False,
     llm=gpt4o_llm,
     allow_delegation=False,
 )
@@ -44,14 +43,16 @@ screenplayer = Agent(
         'AI on narrative, visual descriptions and audio, ensuring an '
         'engaging and emotional experience for the audience.'
     ),
-    backstory=("""
+    backstory=(
+        """
         Experienced screenwriter and video producer. He is well
         aware of YouTube's requirements for making videos go viral.
         Specialized in awakening a feeling of welcome in the public.
-    """),
+    """
+    ),
     verbose=True,
     memory=False,
-    llm=gpt3_llm,
+    llm=gpt4o_llm,
     allow_delegation=False,
 )
 
@@ -76,7 +77,7 @@ write = Task(
     \n\nPúblico: [target_audience] \n\n[letter text]
     """),
     agent=pastor,
-    output_file='output-files/pregacao{passage}.md',
+    output_file='output-files/pregacao.json',
     verbose=2,
 )
 
@@ -88,16 +89,16 @@ screenplay = Task(
     defining music and sound effects.
     """),
     expected_output=dedent("""
-    A script describing the opening, up to 10 scenes and ending of the video.
+    A script describing the opening, up to 15 scenes and ending of the video.
     Each of these elements contains:
-      the detailed prompt for the AI image generation with at least 15 words
-        and add the text 'ar 16:9, photo realistic, photographic quality'
-        to the end of the prompt.
       the duration of the scene;
+      the detailed prompt for the AI image generation with at least 15 words
+        and add the text ', aspect ratio 16x9, ar 16:9, photo realistic,
+        photographic quality' to the end of the prompt.
       the description; and
       text content of the scene.
     Everything written in Brazilian Portuguese (pt-BR),
-      except the prompt, which must be in American English.
+      except the prompt, which must be in American English (en).
     The output must be written in table format to an csv file
     with the columns:
     \nCena:[scene]
@@ -128,15 +129,14 @@ def execute_task(passagem):
 
 
 # Chamada
-if __name__ == "__main__":
+if __name__ == '__main__':
     # Receba o argumento da linha de comando
     if len(sys.argv) != 2:
         print(
             "Uso: python preach.py 'livro capitulo"
             "[:versículo][-versículo final]'"
-            )
+        )
         sys.exit(1)
 
     passagem = sys.argv[1]
     execute_task(passagem)
-
