@@ -8,7 +8,7 @@ from langchain_openai import ChatOpenAI
 
 class CreatingContentAgents:
     def __init__(self):
-        self.llm = ChatOpenAI(model=os.getenv('MODEL', 'gpt-4o'))
+        self.llm = ChatOpenAI(model=os.getenv('MODEL', 'gpt-4'))
 
     def theologian_agent(self):
         return Agent(
@@ -33,7 +33,6 @@ class CreatingContentAgents:
                  the faith of believers and promoting open and respectful
                  dialogue on contemporary theological issues.
                 """),
-            allow_delegation=False,
             llm=self.llm,
             verbose=True,
         )
@@ -60,7 +59,6 @@ class CreatingContentAgents:
                  is to guide, support, and inspire his congregation to live
                  an active and meaningful faith.
                 """),
-            allow_delegation=False,
             llm=self.llm,
             verbose=True,
         )
@@ -86,8 +84,6 @@ class CreatingContentAgents:
                  continues to expand his reach through various gospel
                  productions, aiming to inspire and uplift his audience.
                 """),
-            tools=[FileReadTool],
-            allow_delegation=False,
             llm=self.llm,
             verbose=True,
         )

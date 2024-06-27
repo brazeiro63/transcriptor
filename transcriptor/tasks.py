@@ -4,7 +4,7 @@ from crewai import Task  # type: ignore
 
 
 class PreachDefiningTasks:
-    def subject_development_task(self, agent, bible_verse):
+    def dedication_task(self, agent, bible_verse):
         return Task(
             description=dedent(f"""\
             Retrieve the given verse: {bible_verse}.
@@ -16,12 +16,12 @@ class PreachDefiningTasks:
             Keep in mind that the target audience you intend to reach
             has lower income and a lower level of education.
             """),
-            agent=agent,
-            bible_verse=bible_verse,
             expected_output=dedent("""\
                 Description of the target audience for de verse and
                 a reading dedications for this audience.
             """),
+            agent=agent,
+            bible_verse=bible_verse
         )
 
     def preach_development_task(self, agent, bible_verse):
@@ -52,8 +52,10 @@ class PreachDefiningTasks:
             bible_verse=bible_verse,
             expected_output=dedent(f"""\
                 A document writen in brazilian portuguese (pt-BR)
-                containing the text os the verse {bible_verse},
-                the reading dedication and the text for the preaching.
+                that MUST contain:
+                    the text os the verse {bible_verse};
+                    the reading dedication; and
+                    the text for the preaching.
             """),
         )
 
@@ -104,4 +106,13 @@ class VideoStoryTellingTasks:
             manifestations of affection.
             """),
             agent=agent,
+            preaching=preaching,
+            expected_output=dedent("""\
+                A script for a YouTube video, in table form, which
+                MUST contain:
+                    the scene number;
+                    the prompt for image generation;
+                    the description of the scene;
+                    the text corresponding to the scene.
+            """),
         )
