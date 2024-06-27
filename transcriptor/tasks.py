@@ -75,10 +75,11 @@ class VideoStoryTellingTasks:
 
             You should create the prompts as follows:
             they must all be in English;
-            all must end with “ -ar 16:09”;
+            all numbers MUST be writen in full;
+            all prompts MUST end with “ realistic photography style,
+            16x9, -ar 16:09”;
             they must be specific and detailed, as they will be used
             in a “text to image” generator;
-            images must be in a realistic photography style;
             you must describe in detail what atmosphere and feeling the
             image should convey.
 
